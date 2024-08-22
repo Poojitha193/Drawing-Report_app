@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Drawing-Report_app/static/css/main.5ea3d236.css",
+    "main.js": "/Drawing-Report_app/static/js/main.e6a44467.js",
+    "static/js/453.8f0dacc4.chunk.js": "/Drawing-Report_app/static/js/453.8f0dacc4.chunk.js",
+    "index.html": "/Drawing-Report_app/index.html",
+    "main.5ea3d236.css.map": "/Drawing-Report_app/static/css/main.5ea3d236.css.map",
+    "main.e6a44467.js.map": "/Drawing-Report_app/static/js/main.e6a44467.js.map",
+    "453.8f0dacc4.chunk.js.map": "/Drawing-Report_app/static/js/453.8f0dacc4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5ea3d236.css",
+    "static/js/main.e6a44467.js"
+  ]
+}
