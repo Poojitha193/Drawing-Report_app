@@ -1,21 +1,33 @@
 import React, { useState } from 'react';
 import './../styles.css'; // Make sure this CSS file is correctly imported
 
-function Dashboard({ onGenerateReport }) {
+function Dashboard({ onGenerateReport, onViewOrDownload }) {
   const [selectedDate, setSelectedDate] = useState('');
   const [designConsultant, setDesignConsultant] = useState('');
   const [timePeriod, setTimePeriod] = useState('');
+  const [isDownloadVisible, setIsDownloadVisible] = useState(false);
 
   const handleGoClick = () => {
-    // Call the parent function to generate the report with the selected filters
+    // Trigger report generation
     onGenerateReport({ selectedDate, designConsultant, timePeriod });
+    setIsDownloadVisible(true); // Show the download/view options
   };
 
   const handleResetClick = () => {
-    // Reset all fields to their default state
+    // Reset all fields
     setSelectedDate('');
     setDesignConsultant('');
     setTimePeriod('');
+    setIsDownloadVisible(false);
+    onViewOrDownload(false); // Hide the report table
+  };
+
+  const handleDownloadClick = () => {
+    onViewOrDownload(true); // Trigger download options
+  };
+
+  const handleViewClick = () => {
+    onViewOrDownload(false); // Show the report table without download options
   };
 
   return (
@@ -66,9 +78,17 @@ function Dashboard({ onGenerateReport }) {
 
       {/* Buttons */}
       <div className="button-container">
-        <button className="button go-button" onClick={handleGoClick}>GO</button>
-        <button className="button reset-button" onClick={handleResetClick}>RESET</button>
+        <button className="button go-button" onClick={handleGoClick}>Go</button>
+        <button className="button reset-button" onClick={handleResetClick}>Reset</button>
       </div>
+
+      {/* Download/View Options */}
+      {isDownloadVisible && (
+        <div className="download-container">
+          <button className="button view-button" onClick={handleViewClick}>View</button>
+          <button className="button download-button" onClick={handleDownloadClick}>Download</button>
+        </div>
+      )}
     </div>
   );
 }

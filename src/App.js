@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import './styles.css';  // Import the external CSS file
+import './styles.css';
 import Dashboard from './components/Dashboard';
 import ReportTable from './components/ReportTable';
 import PdfGenerator from './components/PdfGenerator';
-import ExcelGenerator from './components/ExcelGenerator.js';
+import ExcelGenerator from './components/ExcelGenerator';
 import CsvGenerator from './components/CsvGenerator';
 
 function App() {
   const [reportData, setReportData] = useState([]);
+  const [isTableVisible, setIsTableVisible] = useState(false);
+  const [isDownloadVisible, setIsDownloadVisible] = useState(false);
 
   const generateReport = (filters) => {
+    // Simulated data generation
     const simulatedData = [
       {
         date: '2024-08-22',
@@ -26,20 +29,30 @@ function App() {
       },
     ];
     setReportData(simulatedData);
+    setIsTableVisible(false);
+  };
+
+  const handleViewOrDownload = (download) => {
+    setIsTableVisible(!download);
+    setIsDownloadVisible(download);
   };
 
   return (
     <div className="app">
       <h1 className="header">Vehicle Penalty/Challan Tracking</h1>
       <div className="dashboardContainer">
-        <Dashboard onGenerateReport={generateReport} />
+        <Dashboard onGenerateReport={generateReport} onViewOrDownload={handleViewOrDownload} />
       </div>
-      <ReportTable data={reportData} />
-      <div className="buttonContainer">
-        <PdfGenerator data={reportData} />
-        <ExcelGenerator data={reportData} />
-        <CsvGenerator data={reportData} />
-      </div>
+      {isTableVisible && (
+        <ReportTable data={reportData} />
+      )}
+      {isDownloadVisible && (
+        <div className="buttonContainer">
+          <PdfGenerator data={reportData} />
+          <ExcelGenerator data={reportData} />
+          <CsvGenerator data={reportData} />
+        </div>
+      )}
     </div>
   );
 }
