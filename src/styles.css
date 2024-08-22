@@ -6,7 +6,7 @@ body {
 
 .app {
   padding: 20px;
-  max-width: 800px;
+  max-width: 1200px;
   margin: auto;
   background-color: #ffffff;
   border-radius: 10px;
@@ -35,7 +35,7 @@ th, td {
 }
 
 th {
-  background-color: #4CAF50;
+  background-color: #000;
   color: white;
 }
 
@@ -51,15 +51,15 @@ tr {
 
 button {
   padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #ffffff;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: lightblue;
 }
 
 .dashboard {

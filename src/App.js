@@ -37,11 +37,18 @@ function App() {
     setIsDownloadVisible(download);
   };
 
+  const resetViewAndDownload = () => {
+    setIsTableVisible(false);
+    setIsDownloadVisible(false);
+  };
+  
   return (
+
     <div className="app">
       <h1 className="header">Vehicle Penalty/Challan Tracking</h1>
       <div className="dashboardContainer">
-        <Dashboard onGenerateReport={generateReport} onViewOrDownload={handleViewOrDownload} />
+        <Dashboard onGenerateReport={generateReport} onViewOrDownload={handleViewOrDownload} onResetViewAndDownload={resetViewAndDownload} />
+
       </div>
       {isTableVisible && (
         <ReportTable data={reportData} />

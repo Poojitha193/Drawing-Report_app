@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './../styles.css'; // Make sure this CSS file is correctly imported
 
-function Dashboard({ onGenerateReport, onViewOrDownload }) {
+function Dashboard({ onGenerateReport, onViewOrDownload, onResetViewAndDownload}) {
   const [selectedDate, setSelectedDate] = useState('');
   const [designConsultant, setDesignConsultant] = useState('');
   const [timePeriod, setTimePeriod] = useState('');
@@ -19,7 +19,8 @@ function Dashboard({ onGenerateReport, onViewOrDownload }) {
     setDesignConsultant('');
     setTimePeriod('');
     setIsDownloadVisible(false);
-    onViewOrDownload(false); // Hide the report table
+   // onViewOrDownload(true); // Hide the report table
+    onResetViewAndDownload();
   };
 
   const handleDownloadClick = () => {
@@ -70,17 +71,15 @@ function Dashboard({ onGenerateReport, onViewOrDownload }) {
         >
           <option value="">Select</option>
           <option value="byDate">By Date</option>
+
           <option value="byMonth">By Month</option>
           <option value="last6Months">Last 6 Months</option>
           <option value="fromBeginning">From Beginning to Till Date</option>
+          
         </select>
       </div>
 
-      {/* Buttons */}
-      <div className="button-container">
-        <button className="button go-button" onClick={handleGoClick}>Go</button>
-        <button className="button reset-button" onClick={handleResetClick}>Reset</button>
-      </div>
+      
 
       {/* Download/View Options */}
       {isDownloadVisible && (
@@ -88,8 +87,17 @@ function Dashboard({ onGenerateReport, onViewOrDownload }) {
           <button className="button view-button" onClick={handleViewClick}>View</button>
           <button className="button download-button" onClick={handleDownloadClick}>Download</button>
         </div>
+
       )}
+
+      {/* Buttons */}
+      <div className="button-container">
+        <button className="button go-button" onClick={handleGoClick}>Go</button>
+        <button className="button reset-button" onClick={handleResetClick}>Reset</button>
+      </div>
+
     </div>
+
   );
 }
 
